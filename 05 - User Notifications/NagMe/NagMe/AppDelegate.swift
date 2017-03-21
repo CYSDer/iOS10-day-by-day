@@ -44,9 +44,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                 title: "Cancel",
                                                 options: [.foreground])
         
+        let ensureAction = UNNotificationAction(identifier: Identifiers.ensureAction,
+                                                title: "Ensure",
+                                                options: [.destructive])
+        
         // Create category
         let category = UNNotificationCategory(identifier: Identifiers.reminderCategory,
-                                              actions: [cancelAction],
+                                              actions: [cancelAction, ensureAction],
                                               intentIdentifiers: [],
                                               options: [])
         
@@ -60,12 +64,19 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     public func userNotificationCenter(_ center: UNUserNotificationCenter,
                                        didReceive response: UNNotificationResponse,
                                        withCompletionHandler completionHandler: @escaping () -> Void) {
-        if response.actionIdentifier == Identifiers.cancelAction {
+        
+        switch response.actionIdentifier {
+        case Identifiers.cancelAction:
             let request = response.notification.request
             print("Removing item with identifier \(request.identifier)")
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [request.identifier])
+            
+        case Identifiers.ensureAction:
+            print("click ensure button")
+            
+        default:
+            break
         }
-        
         completionHandler()
     }
     

@@ -31,7 +31,9 @@ class NagMeTableViewController: UITableViewController {
 
 // MARK:- DataSource
 extension NagMeTableViewController {
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as! TaskCell
         
         let task = tasks[indexPath.row]

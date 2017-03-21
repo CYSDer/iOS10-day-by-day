@@ -11,4 +11,5 @@ import Foundation
 struct Identifiers {
     static let reminderCategory = "reminder"
     static let cancelAction = "cancel"
+    static let ensureAction = "ensure"
 }

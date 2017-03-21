@@ -16,7 +16,8 @@ class NagMeTableViewController: UITableViewController {
     let tasks: [Task] = [
         "Wash Up",
         "Walk Dog",
-        "Exercise"
+        "Exercise",
+        "learn"
     ]
     
     override func viewDidLoad() {
